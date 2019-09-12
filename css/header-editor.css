@@ -1,0 +1,304 @@
+@font-face {
+  font-family: HolidayExtras Sans;
+  src: url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Regular.eot);
+  src: url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Regular.eot?#iefix) format('embedded-opentype'), url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Regular.woff2) format('woff2'), url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Regular.woff) format('woff'), url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Regular.ttf) format('truetype');
+  font-weight: 400;
+  font-display: auto;
+  font-style: normal
+}
+@font-face {
+  font-family: HolidayExtras Sans;
+  src: url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Bold.eot);
+  src: url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Bold.eot?#iefix) format('embedded-opentype'), url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Bold.woff2) format('woff2'), url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Bold.woff) format('woff'), url(https://d17s4kc6349e5h.cloudfront.net/holidayextras/assets/fonts/HolidayExtrasSans-Bold.ttf) format('truetype');
+  font-weight: 700;
+  font-display: auto;
+  font-style: normal
+}
+
+* {
+	font-family: 'HolidayExtras Sans', Arial Bold, sans-serif;
+	margin:0px;
+	padding:0px;
+}
+
+body {
+	background-color: #301a55;
+}
+
+.title{
+font-size: 22px;
+font-weight: bold;
+color:#FDDC06;
+padding: 0 0 30px 0
+}
+
+.switchToolbar {
+		position: fixed;
+	right: 0;
+	top: 0;
+	background-color: #542E91;
+	width: 400px;
+	height: 60px;
+	box-shadow: 0px 0px 38px 17px rgba(84,46,145,1);
+    overflow-y: hidden;
+}
+
+
+.toolbar {
+	position: fixed;
+right: 0;
+top: 0;
+bottom:0;
+background-color: #542E91;
+width: 400px;
+text-align: left;
+padding:30px;
+overflow-y: scroll;
+}
+
+.desktopActive {
+	background-color: #542E91
+}
+
+.mobileActive {
+	background-color: #542E91
+}
+
+.desktopInactive {
+	background-color: #301a55
+}
+
+.mobileInactive {
+	background-color: #301a55
+}
+
+.textbox {
+		padding: 0 0 30px 0;
+		display:block!important
+}
+
+textarea, input[type="text"].changeImage, input[type="text"].changeCTAText {
+	width:100%;
+	border-radius:5px;
+	padding:20px;
+	background-color:#4b2982;
+	border-color:#d6bcff;
+	color:#FFFFFF;
+	display:block!important
+}
+
+textarea {
+	height:100px;
+}
+
+textarea::placeholder, input[type="text"].changeImage::placeholder,input[type="text"].changeCTAText::placeholder  {
+	color:#d6bcff
+}
+
+.subtitle, .brandText, .fontSizeText, .ctaSizeText, .textSize {
+	padding:0 0 30px 0;
+	font-size:18px;
+	color:#FFFFFF
+}
+
+.textSize {
+	padding:0 0 0 15px
+}
+
+.fontSize > div, .changeCTA > div {
+	display:inline-block
+}
+
+.button {
+	padding:10px;
+	border:3px solid #FDDC06;
+	color:#FDDC06;
+	font-size:15px;
+	margin-left:10px;
+	width:45px;
+	height:45px;
+	text-align: center;
+	border-radius:4px
+
+}
+
+.button:hover {
+	background-color:rgba(254,222,60,0.1);
+}
+
+.active, .active:hover {
+	background-color: #FDDC06;
+	color: #542E91
+}
+
+
+.emailBody {
+	margin:0px auto;
+	width:600px
+}
+
+.contents {
+	position:absolute;
+ width:calc(100% - 400px);
+	 min-height:100%;
+ background-color:#301a55;
+}
+
+iframe {
+	width:100%;
+	height:450px;
+	max-height:100%
+}
+
+.iFrameResize {
+	max-width:600px;
+	margin:0px auto
+}
+body {
+  margin: 0
+}
+
+.hiddenContent {
+	display:none
+}
+
+#drag { background-color: orange; }
+
+.emailWidth {
+	font-size:20px;
+	position: relative;
+  display:inline-block;
+  height: 50px;
+  left: 50%;
+  z-index: 100;
+	color:#FFFFFF;
+  transform:translate(-50%, 0%)
+}
+
+.emailWidth > i {
+	font-size:15px;
+	padding:0 30px;
+	color:#FFFFFF
+}
+
+
+.resizeController {
+	padding:10px 0
+}
+
+.handleMark {
+	font-size:20px;
+	position: absolute;
+  width:  50px;
+  right:0px;
+  top:0px;
+  z-index: 2;
+}
+
+.fa-arrows-alt-h {
+	font-weight: 900;
+    width: 50px;
+    text-align: right;
+		color:#FFFFFF
+}
+
+.pageTitle {
+	font-size:40px;
+	color:#FFFFFF;
+	text-align:center;
+	padding:40px 0 60px 0
+}
+
+.pageTitle > span {
+	color:#FDDC06
+}
+
+.sizeText {
+	width:150px;
+	padding:10px 0 40px 0
+}
+
+
+.codeCopied, .copyCode {
+	bottom:20px
+}
+
+.settingsCopied, .copySettings {
+	bottom:80px
+}
+
+.copyCode, .copySettings {
+	display:inline-block;
+	text-align:center;
+	width:180px;
+	background-color:#FDDC06;
+	color:#542E91;
+	position:absolute;
+	right:420px;
+	z-index:3;
+	font-size:18px;
+	line-height:40px;
+	border-radius:4px
+}
+
+.codeCopied, .settingsCopied {
+	display:none;
+	text-align:center;
+	width:180px;
+	background-color:#00A99D;
+	color:#FFFFFF;
+	position:absolute;
+	right:420px;
+	z-index:4;
+	font-size:18px;
+	line-height:40px;
+	border-radius:4px
+}
+
+.settings {
+	display:none
+
+}
+
+.ui-resizable {
+	position:relative
+}
+
+.resizeControls > div {
+	display:inline-block;
+	font-size:16px;
+	color:#FFFFFF
+}
+
+.resizeWidth {
+	position:absolute;
+	left:50%;
+	transform:translate(-50%,0);
+}
+
+.resizeDevices {
+	position:absolute;
+	left:0;
+}
+
+.resizeControls {
+	position:relative;
+	margin:0 0 40px 0;
+	display:flex
+}
+
+.resizeControls i {
+	margin:0 10px
+}
+
+.fiftyPC {
+	width:50%;
+	display:inline-block;
+	color:#FFFFFF;
+	text-align:center;
+	padding:20px
+}
+
+.fiftyPC i {
+	margin-right: 15px
+}
