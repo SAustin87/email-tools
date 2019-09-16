@@ -40,14 +40,12 @@
   display: block !important
 }
 
-textarea, input[type="text"].changeImage, input[type="text"].changeCTAText {
-  width: 100%;
+textarea, input[type="text"] {
   border-radius: 5px;
-  padding: 20px;
   background-color: #4b2982;
   border-color: #d6bcff;
   color: #FFFFFF;
-  display: block !important
+  display: block
 }
 
 textarea {
@@ -58,7 +56,7 @@ textarea::placeholder, input[type="text"].changeImage::placeholder, input[type="
   color: #d6bcff
 }
 
-.subtitle, .brandText, .fontSizeText, .ctaSizeText, .textSize {
+.subtitle, .brandText, .ctaSizeText, .styleTitle {
   font-size: 18px;
   color: #FFFFFF
 }
@@ -67,18 +65,45 @@ textarea::placeholder, input[type="text"].changeImage::placeholder, input[type="
   padding: 0 0 0 15px
 }
 
-.fontSize>div, .changeCTA>div {
-  display: inline-block
+.styleBlock {
+  width:90%;
+  margin:0 auto;
+
+}
+.styleBlock div, .changeCTA>div {
+  display:inline-block;
+  color:#542E91;
+  font-weight:bold
 }
 
 .button {
-  padding: 10px;
-  border: 3px solid #FDDC06;
-  color: #FDDC06;
+  border: 2px solid #542E91;
+  -webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+  color: #542E91;
   font-size: 15px;
-  margin-left: 10px
+  margin-left: 10px;
+  height:30px;
+  width:30px;
+  line-height:30px;
+  text-align:center;
+  display:inline-block
 }
 
+.styleItalic.button {
+  margin-left:13px
+}
+
+.button:hover {
+  background:rgba(84, 46, 145, 0.2)
+}
+
+.active {
+  background:rgba(84, 46, 145, 1)!important;
+  color:#FDDC06!important
+
+}
 .emailBody {
   margin: 0px auto;
   width: 600px;
@@ -178,9 +203,9 @@ body {
   color: #FDDC06
 }
 
-.sizeText {
-  width: 150px;
-  padding: 10px 0 40px 0
+.styleTitle {
+  width: 180px;
+  padding: 20px 0 20px 0
 }
 
 .codeCopied, .copyCode {
@@ -261,7 +286,7 @@ xmp {
 }
 
 .emptyContent {
-  width: 600px;
+  min-width: 100%
   margin: 0px auto;
   color: white;
   border: 1px dashed white;
@@ -276,7 +301,7 @@ xmp {
 }
 
 .toolbar>h1:first-child {
-  font-size: 45px;
+  font-size: 40px;
   color: #FDDC06;
   margin-top: 10px;
   line-height: 1
@@ -332,4 +357,68 @@ font-size:18px}
 
 .toolbar .module {
   background-color:#FFFFFF
+}
+
+body {
+  background-color:#301a55
+}
+
+.changeModal {
+  position:fixed;
+  height:100%;
+  right:-400px;
+  z-index:2000;
+  background-color:#FDDC06;
+  overflow:scroll
+}
+
+.closeEditor {
+  width:80%;
+  margin:0 auto;
+  font-size: 18px;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: right;
+    color: #4b2982;
+    cursor: pointer;
+    border-bottom: 1px solid #4b2982;
+}
+
+textarea:focus, input:focus{
+    outline: none!important;
+}
+
+.pad30top {
+  padding-top:30px
+}
+
+.pad15top {
+  padding-top:15px
+}
+
+.fontSizeOutput, .lineHeightOutput {
+  margin-left:10px
+}
+
+.imgSize{
+  display:inline
+}
+
+input.imageSize {
+  width:40px
+}
+
+.imgTitle {
+  width:70px;
+}
+
+.imageUrl {
+  width:97%
+}
+.imageUrlContainer {
+  display:block;
+  width:100%
+}
+.imgHeightTitle {
+  margin-left:20px
 }
