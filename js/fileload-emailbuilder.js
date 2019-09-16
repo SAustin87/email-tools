@@ -1,7 +1,7 @@
 
 
-let folder1 = "/email-tools/contentSections/componentModules/"
-let folder2 = "/email-tools/contentSections/layoutModules/"
+let folder1 = "https://github.com/SAustin87/email-tools/tree/master/contentSections/componentModules/"
+let folder2 = "https://github.com/SAustin87/email-tools/tree/master/contentSections/layoutModules/"
 let files = []
 let fileNames = []
 
