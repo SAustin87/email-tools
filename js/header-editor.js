@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-  $.get( "contentSections/layoutModules/01%20brandTagHeader.html", function( data ) {
+  $.get( "/email-tools/contentSections/layoutModules/brandTagHeader.html", function( data ) {
   $( ".emailContent" ).html( data );
   console.log( "Load was performed." );
   console.log(data)

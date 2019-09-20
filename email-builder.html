@@ -34,10 +34,75 @@
 	</script>
 </head>
 	<body>
+
+<div class="deleteModal options"><div class="closeEditor">Return to modules <i class="fas fa-sign-out-alt"></i></div><div class="chosenContent"></div></div>
+
+<div class="changeModal options">
+	<div class="closeEditor">Return to modules <i class="fas fa-sign-out-alt"></i></div>
+<div class="styleBlock pad15top textStyle">
+	<div class="styleTitle">
+Edit text for: <span class="element"></span></div>
+
+</div><div class="textStyle"><textarea class="changeText"></textarea></div>
+
+<div class="styleBlock pad30top textStyle">
+	<div class="styleTitle">
+		Change font style
+	</div>
+	<div class="styleBold style button">
+		<i class="fas fa-bold"></i>
+	</div><div class="styleItalic style button">
+		<i class="fas fa-italic"></i>
+	</div>
+	<div class="styleUnderline style button">
+		<i class="fas fa-underline"></i>
+	</div>
+</div>
+<div class="styleBlock textStyle">
+	<div class="styleTitle">
+		Change font size
+	</div>
+	<div class="sizePlus size button">
+		<i class="fas fa-plus"></i>
+	</div>
+	<div class="sizeMinus size button">
+		<i class="fas fa-minus"></i>
+	</div>
+<div class="fontSizeOutput"></div>
+</div>
+<div class="styleBlock textStyle">
+	<div class="styleTitle">
+		Change line height
+	</div>
+	<div class="heightPlus height button">
+		<i class="fas fa-plus"></i>
+	</div>
+	<div class="heightMinus height button">
+		<i class="fas fa-minus"></i>
+	</div>
+	<div class="lineHeightOutput"></div>
+
+</div>
+
+<div class="styleBlock pad15top textStyle link">
+	<div class="styleTitle">
+Change link url </div>
+
+</div>
+<div class="link textStyle"><textarea class="changeLink"></textarea></div>
+<div class="styleBlock link imageStyle"><div class="styleTitle">
+	Change image url
+</div><div class="imageUrlContainer"><input type="text" class="imageUrl"></div></div>
+<div class="styleBlock imageStyle"><div class="imgSize"><div class="styleTitle imgTitle">
+Width:</div><div><input type="text" class="imageWidth imageSize"></div><div class="styleTitle imgTitle imgHeightTitle">
+Height:</div><div><input type="text" class="imageHeight imageSize"></div></div>
+
+</div></div>
+
 <div class="copyBtn">
 <div class="copyCode">Copy code <i class="far fa-copy"></i></div>
 <div class="codeCopied">Code copied <i class="far fa-check-circle"></i></div></div>
-<div class="toolbar">
+<div class="toolbar options">
   <h1>Modules</h1>
 	<h2 id="layoutModules">Layout modules</h2>
 	<div class="layoutModules"></div>
@@ -49,7 +114,8 @@
 	<div class="pageTitle">Holiday <span>Extras</span> Email Builder</div>
 
 <div class="emailBody">
-	<div class="resizeControls"><div class="resizeDevices"><i class="fas fa-desktop"></i><i class="fas fa-mobile-alt"></i></div><div class="resizeWidth"><i class="fas fa-arrow-left"></i><span class="resizePixels count">600</span>px<i class="fas fa-arrow-right"></i></div></div>
+	<div class="resizeControls"><div class="resizeDevices"><i class="fas fa-desktop"></i><i class="fas fa-mobile-alt"></i></div><div class="resizeWidth"><i class="fas fa-arrow-left"></i><span class="resizePixels count">600</span>px<i class="fas fa-arrow-right"></i></div><div class="deleteModulesBtn">Remove modules</div>
+</div>
 
 <div class="iFrameResize" id="resize">
 <iframe frameborder="0" id="iFrame" name="iFrame" src=""></iframe>
@@ -75,7 +141,7 @@
 			}</style>
 <style class="emptyContentStyle">
 .emptyContent {
-	width: 538px;
+	width: 100%;
     margin: 0px auto;
     color: white;
     border: 1px dashed white;
@@ -893,4 +959,5 @@ a.ctabtn {
 									</body>
 
 									</html></xmp>
+
   </body></html>
