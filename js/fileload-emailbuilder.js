@@ -1,5 +1,5 @@
 
-let path = '/email-tools/contentSections/'
+let path = '/contentSections/'
 let files =
 	{
 		componentModules : [
