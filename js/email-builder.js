@@ -439,6 +439,7 @@ $(this).removeClass('active')
           }
         });
       });
+        $('iframe').animate({height: '100%'},1000)
     }
   });
   $('.closeEditor').click(function() {
