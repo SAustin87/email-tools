@@ -10,6 +10,8 @@ setTimeout(function() {
     margin: '0px',
     padding: '0px'
   })
+
+
   $('.copyCode').css({
     'pointer-events': "none",
     opacity: '0.5',
@@ -18,7 +20,7 @@ setTimeout(function() {
 
   $(".copyCode").click(function() {
     iFrameDom.find('.emailContent .mobileText').text($('.emailContent .desktopMsg').text());
-    iFrameDom.find('.emailContent *').removeAttr('contenteditable')
+    iFrameDom.find('.emptyContent, .emptyContentStyle').remove()
     const $temp = $("<textarea>");
     const openingCode = $('.openingCode').text().trim()
     const bodyCode = iFrameDom.find('.emailContent').html().trim()
@@ -52,7 +54,7 @@ setTimeout(function() {
   })
   const copyBtnHeight = $('.copyBtn').outerHeight();
   $(".module").parent().click(function() {
-    iFrameDom.find('.emptyContent, .emptyContentStyle').remove()
+    iFrameDom.find('.emptyContent, .emptyContentStyle').hide()
     $('.hiddenContent .emptyContentStyle').remove()
     $('.resizeControls').show()
     $('.copyCode').css({
@@ -67,305 +69,306 @@ setTimeout(function() {
     iFrameDom.find('.emailContent > .module').removeClass('module')
 
     iFrameDom.find('h1, h2, h3, h4, p, a, li, img').unbind('click').bind('click', function(e) {
-			e.stopPropagation();
-			e.preventDefault();
+      e.stopPropagation();
+      e.preventDefault();
 
       thisElement = $(this)
-			thisElement2 = this
+      thisElement2 = this
 
-			console.log(thisElement.prop('tagName'))
+      console.log(thisElement.prop('tagName'))
       $('.element').text($(thisElement).prop('tagName'))
 
-			$(thisElement).addClass(thisElement.prop('tagName'))
+      $(thisElement).addClass(thisElement.prop('tagName'))
       console.log(thisElement)
 
-			$('.textStyle, .imageStyle, .link').hide()
+      $('.textStyle, .imageStyle, .link').hide()
 
-			if ($('.changeModal').css('right') != '0') {
+      if ($('.changeModal').css('right') != '0') {
         $('.changeModal').css({
-          'opacity':'1'
-})
-				$('.changeModal').animate({
-					'right': '0'
-				}, 1000)
-				$('.options').not('.changeModal').animate({
+          'opacity': '1'
+        })
+        $('.changeModal').animate({
+          'right': '0'
+        }, 1000)
+        $('.deleteModal').animate({
           'right': '-400px'
-				}, 1000)
-			}
-			$("textarea, .imageSize").val('')
-			$('.fontSizeOutput').text('')
+        }, 1000)
+        $('.toolbar > *').animate({
+          'opacity': '0'
+        }, 1000)
+      }
+      $("textarea, .imageSize").val('')
+      $('.fontSizeOutput').text('')
 
 
-if ($(thisElement).hasClass('IMG')) {
-	$('.link').show()
-	$('.textStyle').hide()
-	if ($(thisElement).parent('a').length) {
-		$('.link').show()
-	}
-	$('.imageStyle').show()
-} else if ($(thisElement).hasClass('A')) {
-	$('.textStyle').show()
-	$('.link').show()
-	$('.imageStyle').hide()
-	if ($(thisElement).children('img').length) {
-		$('.imageStyle').show()
-	}
-} else {
-	$('.textStyle').show()
-	$('.link').hide()
-	$('.imageStyle').hide()
-}
+      if ($(thisElement).hasClass('IMG')) {
+        $('.link').show()
+        $('.textStyle').hide()
+        if ($(thisElement).parent('a').length) {
+          $('.link').show()
+        }
+        $('.imageStyle').show()
+      } else if ($(thisElement).hasClass('A')) {
+        $('.textStyle').show()
+        $('.link').show()
+        $('.imageStyle').hide()
+        if ($(thisElement).children('img').length) {
+          $('.imageStyle').show()
+        }
+      } else {
+        $('.textStyle').show()
+        $('.link').hide()
+        $('.imageStyle').hide()
+      }
 
 
 
 
       if (iFrameDom.find(thisElement).is('a')) {
         e.preventDefault();
-				$("textarea.changeLink").on('keyup blur', function() {
-					let newLinkHref = $(this).val().trim()
+        $("textarea.changeLink").on('keyup blur', function() {
+          let newLinkHref = $(this).val().trim()
           iFrameDom.find(thisElement).attr('href', newLinkHref)
         });
-      }
-			else if (iFrameDom.find(thisElement).find('a').length) {
+      } else if (iFrameDom.find(thisElement).find('a').length) {
         e.preventDefault();
-				let linkHref = iFrameDom.find(thisElement).find('a').attr('href')
-				$('textarea.changeLink').val(linkHref)
-				$("textarea.changeLink").on('keyup blur', function() {
-					let newLinkHref = $(this).val().trim()
+        let linkHref = iFrameDom.find(thisElement).find('a').attr('href')
+        $('textarea.changeLink').val(linkHref)
+        $("textarea.changeLink").on('keyup blur', function() {
+          let newLinkHref = $(this).val().trim()
           iFrameDom.find(thisElement).find('a').attr('href', newLinkHref)
         });
       }
 
-			if (iFrameDom.find(thisElement).is('img')) {
-				let imgWidth = iFrameDom.find(thisElement).attr('width')
-				let imgHeight = iFrameDom.find(thisElement).attr('height')
-				$('.imageHeight').val(imgHeight)
-				$('.imageWidth').val(imgWidth)
+      if (iFrameDom.find(thisElement).is('img')) {
+        let imgWidth = iFrameDom.find(thisElement).attr('width')
+        let imgHeight = iFrameDom.find(thisElement).attr('height')
+        $('.imageHeight').val(imgHeight)
+        $('.imageWidth').val(imgWidth)
 
-				$("input.imageUrl").on('keyup blur', function() {
-					let newImageSrc = $(this).val().trim()
-					iFrameDom.find(thisElement).attr('src', newImageSrc)
-				});
-				$("textarea.changeLink").on('keyup blur', function() {
-					let newLinkHref = $(this).val().trim()
+        $("input.imageUrl").on('keyup blur', function() {
+          let newImageSrc = $(this).val().trim()
+          iFrameDom.find(thisElement).attr('src', newImageSrc)
+        });
+        $("textarea.changeLink").on('keyup blur', function() {
+          let newLinkHref = $(this).val().trim()
           iFrameDom.find(thisElement).parent('a').attr('href', newLinkHref)
         });
-				$("input.imageSize").on('keyup blur', function() {
-					if ($(this).hasClass('imageHeight')) {
-						let newHeight = $(this).val().trim()
-						iFrameDom.find(thisElement).attr('height', newHeight)
-					} else if ($(this).hasClass('imageWidth')) {
-						let newWidth = $(this).val().trim()
-						iFrameDom.find(thisElement).attr('width', newWidth)
-					}
-				});
-			}
-
-        if (iFrameDom.find(thisElement).find('a').length) {
-          if ($(iFrameDom).find(thisElement).find('a').css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
-            $('.styleBold').removeClass('active')
-          } else {
-            $('.styleBold').addClass('active')
-          }
-          if ($(iFrameDom).find(thisElement).find('a').css('font-style') === 'normal' || $(iFrameDom).find(thisElement).css('font-style') === '') {
-            $('.styleItalic').removeClass('active')
-          } else {
-            $('.styleItalic').addClass('active')
-          }
-          let textDecoration = $(iFrameDom).find(thisElement).find('a').css('text-decoration').split(' ')
-          let textDecorationSplit = textDecoration[0]
-          if (textDecorationSplit === 'none') {
-            $('.styleUnderline').removeClass('active')
-          } else {
-            $('.styleUnderline').addClass('active')
-          }
-        }
-				else {
-          if ($(iFrameDom).find(thisElement).css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
-            $('.styleBold').removeClass('active')
-          } else {
-            $('.styleBold').addClass('active')
-          }
-          if ($(iFrameDom).find(thisElement).css('font-style') === 'normal' || $(iFrameDom).find(thisElement).css('font-style') === '') {
-            $('.styleItalic').removeClass('active')
-          } else {
-            $('.styleItalic').addClass('active')
-          }
-          let textDecoration = $(iFrameDom).find(thisElement).css('text-decoration').split(' ')
-          let textDecorationSplit = textDecoration[0]
-          if (textDecorationSplit === 'none') {
-            $('.styleUnderline').removeClass('active')
-          } else {
-            $('.styleUnderline').addClass('active')
-          }
-        }
-        $("textarea.changeText").on('keyup blur', function() {
-          console.log(thisElement)
-          if (iFrameDom.find(thisElement).find('a').length) {
-            console.log('has a')
-            iFrameDom.find(thisElement).find('a').html($(this).val().trim());
-          } else {
-            console.log('has no a')
-            iFrameDom.find(thisElement).html($(this).val().trim());
+        $("input.imageSize").on('keyup blur', function() {
+          if ($(this).hasClass('imageHeight')) {
+            let newHeight = $(this).val().trim()
+            iFrameDom.find(thisElement).attr('height', newHeight)
+          } else if ($(this).hasClass('imageWidth')) {
+            let newWidth = $(this).val().trim()
+            iFrameDom.find(thisElement).attr('width', newWidth)
           }
         });
-        let styleBold = $(iFrameDom).find(thisElement).css('font-weight')
-        let styleItalic = $(iFrameDom).find(thisElement).css('font-style')
-        let styleUnderline = $(iFrameDom).find(thisElement).css('text-decoration')
+      }
 
-				$(".style").unbind('click').bind('click', function() {
+      if (iFrameDom.find(thisElement).find('a').length) {
+        if ($(iFrameDom).find(thisElement).find('a').css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
+          $('.styleBold').removeClass('active')
+        } else {
+          $('.styleBold').addClass('active')
+        }
+        if ($(iFrameDom).find(thisElement).find('a').css('font-style') === 'normal' || $(iFrameDom).find(thisElement).css('font-style') === '') {
+          $('.styleItalic').removeClass('active')
+        } else {
+          $('.styleItalic').addClass('active')
+        }
+        let textDecoration = $(iFrameDom).find(thisElement).find('a').css('text-decoration').split(' ')
+        let textDecorationSplit = textDecoration[0]
+        if (textDecorationSplit === 'none') {
+          $('.styleUnderline').removeClass('active')
+        } else {
+          $('.styleUnderline').addClass('active')
+        }
+      } else {
+        if ($(iFrameDom).find(thisElement).css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
+          $('.styleBold').removeClass('active')
+        } else {
+          $('.styleBold').addClass('active')
+        }
+        if ($(iFrameDom).find(thisElement).css('font-style') === 'normal' || $(iFrameDom).find(thisElement).css('font-style') === '') {
+          $('.styleItalic').removeClass('active')
+        } else {
+          $('.styleItalic').addClass('active')
+        }
+        let textDecoration = $(iFrameDom).find(thisElement).css('text-decoration').split(' ')
+        let textDecorationSplit = textDecoration[0]
+        if (textDecorationSplit === 'none') {
+          $('.styleUnderline').removeClass('active')
+        } else {
+          $('.styleUnderline').addClass('active')
+        }
+      }
+      $("textarea.changeText").on('keyup blur', function() {
+        console.log(thisElement)
+        if (iFrameDom.find(thisElement).find('a').length) {
+          console.log('has a')
+          iFrameDom.find(thisElement).find('a').html($(this).val().trim());
+        } else {
+          console.log('has no a')
+          iFrameDom.find(thisElement).html($(this).val().trim());
+        }
+      });
+      let styleBold = $(iFrameDom).find(thisElement).css('font-weight')
+      let styleItalic = $(iFrameDom).find(thisElement).css('font-style')
+      let styleUnderline = $(iFrameDom).find(thisElement).css('text-decoration')
 
-							if (iFrameDom.find(thisElement).find('a').length) {
+      $(".style").unbind('click').bind('click', function() {
 
-  if ($(this).hasClass('styleBold')) {
-    if ($(iFrameDom).find(thisElement).find('a').css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
-      console.log('bolding an a tag')
-      iFrameDom.find(thisElement).find('a').css('font-weight', 'bold')
-      $(this).addClass('active')
-    } else {
-      iFrameDom.find(thisElement).find('a').css('font-weight', 'normal')
-      $(this).removeClass('active')
-    }
-  } else if ($(this).hasClass('styleItalic')) {
-    if ($(iFrameDom).find(thisElement).find('a').css('font-style') === 'normal' || $(iFrameDom).find(thisElement).find('a').css('font-style') === '') {
+        if (iFrameDom.find(thisElement).find('a').length) {
 
-      console.log('Add italics to a')
-      iFrameDom.find(thisElement).find('a').css('font-style', 'italic')
-      $(this).addClass('active')
+          if ($(this).hasClass('styleBold')) {
+            if ($(iFrameDom).find(thisElement).find('a').css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
+              console.log('bolding an a tag')
+              iFrameDom.find(thisElement).find('a').css('font-weight', 'bold')
+              $(this).addClass('active')
+            } else {
+              iFrameDom.find(thisElement).find('a').css('font-weight', 'normal')
+              $(this).removeClass('active')
+            }
+          } else if ($(this).hasClass('styleItalic')) {
+            if ($(iFrameDom).find(thisElement).find('a').css('font-style') === 'normal' || $(iFrameDom).find(thisElement).find('a').css('font-style') === '') {
 
-    } else {
-      console.log('Remove italics from a')
-      iFrameDom.find(thisElement).find('a').css('font-style', 'normal')
-      $(this).removeClass('active')
-    }
+              console.log('Add italics to a')
+              iFrameDom.find(thisElement).find('a').css('font-style', 'italic')
+              $(this).addClass('active')
 
-
-
-  } else if ($(this).hasClass('styleUnderline')) {
-    let textDecoration = $(iFrameDom).find(thisElement).find('a').css('text-decoration').split(' ')
-    let textDecorationSplit = textDecoration[0]
-
-    if (textDecorationSplit === 'none') {
-
-
-      console.log('bolding an a tag')
-
-      iFrameDom.find(thisElement).find('a').css('text-decoration', 'underline')
-      $(this).addClass('active')
-
-    } else {
-
-      iFrameDom.find(thisElement).find('a').css('text-decoration', 'none')
-      $(this).removeClass('active')
-    }
-  }
-} else {
-
-if ($(this).hasClass('styleBold')) {
-if ($(iFrameDom).find(thisElement).css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
-iFrameDom.find(thisElement).css('font-weight', 'bold')
-$(this).addClass('active')
-} else {
-iFrameDom.find(thisElement).css('font-weight', 'normal')
-$(this).removeClass('active')
-}
-} else if ($(this).hasClass('styleItalic')) {
-if ($(iFrameDom).find(thisElement).css('font-style') === 'normal' || $(iFrameDom).find(thisElement).find('a').css('font-style') === '') {
-iFrameDom.find(thisElement).css('font-style', 'italic')
-$(this).addClass('active')
-} else {
-iFrameDom.find(thisElement).css('font-style', 'normal')
-$(this).removeClass('active')
-}
-} else if ($(this).hasClass('styleUnderline')) {
-let textDecoration = $(iFrameDom).find(thisElement).css('text-decoration').split(' ')
-let textDecorationSplit = textDecoration[0]
-
-if (textDecorationSplit === 'none') {
-
-iFrameDom.find(thisElement).css('text-decoration', 'underline')
-$(this).addClass('active')
-
-} else {
-
-iFrameDom.find(thisElement).css('text-decoration', 'none')
-$(this).removeClass('active')
-}
-}
-}
+            } else {
+              console.log('Remove italics from a')
+              iFrameDom.find(thisElement).find('a').css('font-style', 'normal')
+              $(this).removeClass('active')
+            }
 
 
-				});
 
-				$(".size").unbind('click').bind('click', function() {
+          } else if ($(this).hasClass('styleUnderline')) {
+            let textDecoration = $(iFrameDom).find(thisElement).find('a').css('text-decoration').split(' ')
+            let textDecorationSplit = textDecoration[0]
 
-					if (iFrameDom.find(thisElement).find('a').length) {
-						let currentSize = parseInt(iFrameDom.find(thisElement).find('a').css("font-size").replace('px', ''))
-					  let sizePlus = currentSize + 1
-						let sizeMinus = currentSize - 1
-						if ($(this).hasClass('sizePlus')) {
-					  iFrameDom.find(thisElement).find('a').css("font-size", sizePlus + "px");
-					  $('.fontSizeOutput').text(':' + sizePlus + 'px') }
-						else if ($(this).hasClass('sizeMinus')) {
-						iFrameDom.find(thisElement).find('a').css("font-size", sizeMinus + "px");
-						 $('.fontSizeOutput').text(':' + sizeMinus + 'px') }
-					} else {
-				  let currentSize = parseInt(iFrameDom.find(thisElement).css("font-size").replace('px', ''))
-				  let sizePlus = currentSize + 1
-					let sizeMinus = currentSize - 1
-					if ($(this).hasClass('sizePlus')) {
-				  iFrameDom.find(thisElement).css("font-size", sizePlus + "px");
-				  $('.fontSizeOutput').text(':' + sizePlus + 'px') }
-					else if ($(this).hasClass('sizeMinus')) {
-					iFrameDom.find(thisElement).css("font-size", sizeMinus + "px");
-					 $('.fontSizeOutput').text(':' + sizeMinus + 'px') }
-				 }
-
-				});
-
-				$(".height").unbind('click').bind('click', function() {
-
-					if (iFrameDom.find(thisElement).find('a').length) {
-
-					if ($(this).hasClass('heightPlus')) {
-						let currentHeight = parseFloat(iFrameDom.find(thisElement).find('a').css("line-height").replace('px', '')).toFixed(1)
-						let currentFontSize = parseFloat(iFrameDom.find(thisElement).find('a').css("font-size").replace('px', ''))
-						let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
-						let heightPlusEM = (heightEM + 0.1).toFixed(1)
-				  iFrameDom.find(thisElement).find('a').css("line-height", heightPlusEM);
-				  $('.lineHeightOutput').text(':' + heightPlusEM)
-				}
-					else if ($(this).hasClass('heightMinus')) {
-						let currentHeight = parseFloat(iFrameDom.find(thisElement).find('a').css("line-height").replace('px', '')).toFixed(1)
-						let currentFontSize = parseFloat(iFrameDom.find(thisElement).find('a').css("font-size").replace('px', ''))
-						let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
-						let heightMinusEM = (heightEM - 0.1).toFixed(1)
-						iFrameDom.find(thisElement).find('a').css("line-height", heightMinusEM);
-						$('.lineHeightOutput').text(':' + heightMinusEM)
-					}
-				} else {
-
-							if ($(this).hasClass('heightPlus')) {
-								let currentHeight = parseFloat(iFrameDom.find(thisElement).css("line-height").replace('px', '')).toFixed(1)
-								let currentFontSize = parseFloat(iFrameDom.find(thisElement).css("font-size").replace('px', ''))
-								let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
-								let heightPlusEM = (heightEM + 0.1).toFixed(1)
-						  iFrameDom.find(thisElement).css("line-height", heightPlusEM);
-						  $('.lineHeightOutput').text(':' + heightPlusEM)
-				}
-							else if ($(this).hasClass('heightMinus')) {
-								let currentHeight = parseFloat(iFrameDom.find(thisElement).css("line-height").replace('px', '')).toFixed(1)
-								let currentFontSize = parseFloat(iFrameDom.find(thisElement).css("font-size").replace('px', ''))
-								let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
-								let heightMinusEM = (heightEM - 0.1).toFixed(1)
-								iFrameDom.find(thisElement).css("line-height", heightMinusEM);
-								$('.lineHeightOutput').text(':' + heightMinusEM)
-
-						}
-						}
+            if (textDecorationSplit === 'none') {
 
 
-				});
+              console.log('bolding an a tag')
+
+              iFrameDom.find(thisElement).find('a').css('text-decoration', 'underline')
+              $(this).addClass('active')
+
+            } else {
+
+              iFrameDom.find(thisElement).find('a').css('text-decoration', 'none')
+              $(this).removeClass('active')
+            }
+          }
+        } else {
+
+          if ($(this).hasClass('styleBold')) {
+            if ($(iFrameDom).find(thisElement).css('font-weight') === '400' || $(iFrameDom).find(thisElement).css('font-weight') === '') {
+              iFrameDom.find(thisElement).css('font-weight', 'bold')
+              $(this).addClass('active')
+            } else {
+              iFrameDom.find(thisElement).css('font-weight', 'normal')
+              $(this).removeClass('active')
+            }
+          } else if ($(this).hasClass('styleItalic')) {
+            if ($(iFrameDom).find(thisElement).css('font-style') === 'normal' || $(iFrameDom).find(thisElement).find('a').css('font-style') === '') {
+              iFrameDom.find(thisElement).css('font-style', 'italic')
+              $(this).addClass('active')
+            } else {
+              iFrameDom.find(thisElement).css('font-style', 'normal')
+              $(this).removeClass('active')
+            }
+          } else if ($(this).hasClass('styleUnderline')) {
+            let textDecoration = $(iFrameDom).find(thisElement).css('text-decoration').split(' ')
+            let textDecorationSplit = textDecoration[0]
+
+            if (textDecorationSplit === 'none') {
+
+              iFrameDom.find(thisElement).css('text-decoration', 'underline')
+              $(this).addClass('active')
+
+            } else {
+
+              iFrameDom.find(thisElement).css('text-decoration', 'none')
+              $(this).removeClass('active')
+            }
+          }
+        }
+
+
+      });
+
+      $(".size").unbind('click').bind('click', function() {
+
+        if (iFrameDom.find(thisElement).find('a').length) {
+          let currentSize = parseInt(iFrameDom.find(thisElement).find('a').css("font-size").replace('px', ''))
+          let sizePlus = currentSize + 1
+          let sizeMinus = currentSize - 1
+          if ($(this).hasClass('sizePlus')) {
+            iFrameDom.find(thisElement).find('a').css("font-size", sizePlus + "px");
+            $('.fontSizeOutput').text(':' + sizePlus + 'px')
+          } else if ($(this).hasClass('sizeMinus')) {
+            iFrameDom.find(thisElement).find('a').css("font-size", sizeMinus + "px");
+            $('.fontSizeOutput').text(':' + sizeMinus + 'px')
+          }
+        } else {
+          let currentSize = parseInt(iFrameDom.find(thisElement).css("font-size").replace('px', ''))
+          let sizePlus = currentSize + 1
+          let sizeMinus = currentSize - 1
+          if ($(this).hasClass('sizePlus')) {
+            iFrameDom.find(thisElement).css("font-size", sizePlus + "px");
+            $('.fontSizeOutput').text(':' + sizePlus + 'px')
+          } else if ($(this).hasClass('sizeMinus')) {
+            iFrameDom.find(thisElement).css("font-size", sizeMinus + "px");
+            $('.fontSizeOutput').text(':' + sizeMinus + 'px')
+          }
+        }
+
+      });
+
+      $(".height").unbind('click').bind('click', function() {
+
+        if (iFrameDom.find(thisElement).find('a').length) {
+
+          if ($(this).hasClass('heightPlus')) {
+            let currentHeight = parseFloat(iFrameDom.find(thisElement).find('a').css("line-height").replace('px', '')).toFixed(1)
+            let currentFontSize = parseFloat(iFrameDom.find(thisElement).find('a').css("font-size").replace('px', ''))
+            let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
+            let heightPlusEM = (heightEM + 0.1).toFixed(1)
+            iFrameDom.find(thisElement).find('a').css("line-height", heightPlusEM);
+            $('.lineHeightOutput').text(':' + heightPlusEM)
+          } else if ($(this).hasClass('heightMinus')) {
+            let currentHeight = parseFloat(iFrameDom.find(thisElement).find('a').css("line-height").replace('px', '')).toFixed(1)
+            let currentFontSize = parseFloat(iFrameDom.find(thisElement).find('a').css("font-size").replace('px', ''))
+            let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
+            let heightMinusEM = (heightEM - 0.1).toFixed(1)
+            iFrameDom.find(thisElement).find('a').css("line-height", heightMinusEM);
+            $('.lineHeightOutput').text(':' + heightMinusEM)
+          }
+        } else {
+
+          if ($(this).hasClass('heightPlus')) {
+            let currentHeight = parseFloat(iFrameDom.find(thisElement).css("line-height").replace('px', '')).toFixed(1)
+            let currentFontSize = parseFloat(iFrameDom.find(thisElement).css("font-size").replace('px', ''))
+            let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
+            let heightPlusEM = (heightEM + 0.1).toFixed(1)
+            iFrameDom.find(thisElement).css("line-height", heightPlusEM);
+            $('.lineHeightOutput').text(':' + heightPlusEM)
+          } else if ($(this).hasClass('heightMinus')) {
+            let currentHeight = parseFloat(iFrameDom.find(thisElement).css("line-height").replace('px', '')).toFixed(1)
+            let currentFontSize = parseFloat(iFrameDom.find(thisElement).css("font-size").replace('px', ''))
+            let heightEM = parseFloat((currentHeight / currentFontSize).toFixed(1))
+            let heightMinusEM = (heightEM - 0.1).toFixed(1)
+            iFrameDom.find(thisElement).css("line-height", heightMinusEM);
+            $('.lineHeightOutput').text(':' + heightMinusEM)
+
+          }
+        }
+
+
+      });
 
     });
   });
@@ -404,7 +407,9 @@ $(this).removeClass('active')
       $('.emailBody').animate({
         "width": "600px"
       }, 1000)
-      setTimeout(function() {$('.deleteModulesBtn').show()},1000)
+      setTimeout(function() {
+        $('.deleteModulesBtn').show()
+      }, 1000)
       $('.count').text('600')
       $('.count').each(function() {
         $(this).prop('Counter', 320).animate({
@@ -441,32 +446,49 @@ $(this).removeClass('active')
     }
   });
   $('.closeEditor').click(function() {
-    if ($('.toolbar').css('right') != '0') {
-      $('.toolbar').css('opacity','1')
-      $('.toolbar').animate({
-        'right': '0'
+    if ($('.toolbar > *').css('opacity') = '0') {
+      $('.toolbar > *').animate({
+        'opacity': '1'
       }, 1000)
       $('.options').not('.toolbar').animate({
         'right': '-400px'
       }, 1000)
+      $('.deleteModulesBtn').animate({
+        'opacity': '1'
+      }, 1000)
+
     }
   })
 
   $('.deleteModulesBtn').click(function() {
     let chosenContent = iFrameDom.find('.emailContent').html()
-let zindex = $('.changeModal').css('z-index') + 1
+
     $('.chosenContent').html(chosenContent)
     $('.chosenContent > table').wrap('<div class="removeModules"></div>')
-    $('.deleteModal').css('width',toolbarWidth)
+    $('.deleteModal').css('width', toolbarWidth)
     if ($('.deleteModal').css('right') != '0') {
+      $('.deleteModulesBtn').animate({
+        'opacity': '0'
+      }, 1000)
+
+      $('.changeModal').css({
+        'z-index': '100'
+      })
       $('.deleteModal').css({
-        'opacity':'1'
-})
+        'z-index': '1000'
+      })
+
+      $('.deleteModal').css({
+        'opacity': '1'
+      })
       $('.deleteModal').animate({
         'right': '0'
       }, 1000)
-      $('.options').not('.deleteModal').animate({
+      $('.changeModal').animate({
         'right': '-400px'
+      }, 1000)
+      $('.toolbar > *').animate({
+        'opacity': '0'
       }, 1000)
     }
 
@@ -501,19 +523,37 @@ let zindex = $('.changeModal').css('z-index') + 1
         $(this).remove()
       });
 
-$('.tableOverlay').click(function() {
-  let index = $(this).parent().parent().index()
-  console.log(index)
-  $(this).animate({opacity: '0'}, 500)
-  iFrameDom.find('.emailContent').children('table').eq(index).remove()
-  $('.removeModules').eq(index).remove()
+      $('.tableOverlay').click(function() {
+        let index = $(this).parent().parent().index()
+        console.log(index)
+        $(this).animate({
+          opacity: '0'
+        }, 500)
+        iFrameDom.find('.emailContent').children('table').eq(index).remove()
+        $('.removeModules').eq(index).remove()
 
-});
+        if (iFrameDom.find('.emailContent').children().length < 1) {
+          console.log('empty')
+          $('.copyCode').css({
+            'pointer-events': "none",
+            opacity: '0.5',
+            cursor: 'pointer'
+          })
+          iFrameDom.find('.emptyContent, .emptyContentStyle').show()
+          $('.toolbar > *').animate({
+            'opacity': '1'
+          }, 1000)
+          $('.deleteModal').animate({
+            'right': '-400px'
+          }, 1000)
+          $('.deleteModulesBtn').animate({
+            'opacity': '1'
+          }, 1000)
+
+        }
+
+      });
 
     });
-    })
-
-
-
-
+  })
 }, 2000);

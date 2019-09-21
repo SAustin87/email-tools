@@ -14,7 +14,8 @@ let files =
 			'transactionalFooter.html',
 			'termsAndConditions.html',
 			'spacer.html',
-			'appButtons.html'
+			'appButtons.html',
+			'HEHAApp.html'
 		],
 		layoutModules : [
 			'brandTagHeader.html',
