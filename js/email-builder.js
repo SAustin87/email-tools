@@ -65,8 +65,7 @@ setTimeout(function() {
     $(this).children('table').clone().appendTo(iFrameDom.find('.emailContent'));
     iFrameDom.find('.emailContent .module').css("background-color", "#FFFFFF")
     iFrameDom.find('.emailContent > .module').removeClass('module')
-    let emailContentHeight = iFrameDom.find('.emailContent').css('height')
-    $('iframe').css({'height': emailContentHeight})
+
     iFrameDom.find('h1, h2, h3, h4, p, a, li, img').unbind('click').bind('click', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
@@ -372,7 +371,7 @@ $(this).removeClass('active')
   });
   $(".toolbar > div > div > div").children().mouseenter(function() {
     const overlay = '<div class="tableOverlay"><i class="fas fa-plus"></i></div>'
-    $(this).after(overlay);
+    $(this).append(overlay);
     const bottomWidth = $(this).css('width');
     const bottomHeight = $(this).css('height');
     const rowPos = $(this).position();
@@ -439,7 +438,6 @@ $(this).removeClass('active')
           }
         });
       });
-        $('iframe').animate({height: '100%'},1000)
     }
   });
   $('.closeEditor').click(function() {
@@ -458,7 +456,7 @@ $(this).removeClass('active')
     let chosenContent = iFrameDom.find('.emailContent').html()
 let zindex = $('.changeModal').css('z-index') + 1
     $('.chosenContent').html(chosenContent)
-    $('.chosenContent > table').css('border', '1px solid #542E91')
+    $('.chosenContent > table').wrap('<div class="removeModules"></div>')
     $('.deleteModal').css('width',toolbarWidth)
     if ($('.deleteModal').css('right') != '0') {
       $('.deleteModal').css({
@@ -473,29 +471,25 @@ let zindex = $('.changeModal').css('z-index') + 1
     }
 
     $('.chosenContent a').removeAttr('href')
-    $('.chosenContent > table').click(function() {
+    $('.removeModules > table').click(function() {
 
-
-      const overlay = '<div class="tableOverlay"><i class="far fa-trash-alt"></i>'
-      $(this).after(overlay);
-      let width = parseInt($(this).css('width'));
-    let height = parseInt($(this).css('height'));
-      let top = $(this).offset().top;
-      let contentArea = $('.contentArea').outerWidth()
-
+      const overlay = '<div class="tableOverlay"><i class="fas fa-plus"></i></div>'
+      $(this).append(overlay);
+      const bottomWidth = $(this).css('width');
+      const bottomHeight = $(this).css('height');
+      const rowPos = $(this).position();
+      bottomTop = rowPos.top;
+      bottomLeft = rowPos.left;
       $('.tableOverlay').css({
         position: 'absolute',
-        top: top,
-        left: '50%',
-        width: width + 'px',
-        height: height + 'px',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
         background: '#FFFFFF',
-        opacity: '0.75',
-        zoom: '0.5',
-        transform: 'scale(1) translate(-50%,-0%)',
-        margin: '0 auto',
+        opacity: '0.75'
       });
-      $('.tableOverlay > .fa-trash-alt').css({
+      $('.tableOverlay > .fa-plus').css({
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -507,26 +501,18 @@ let zindex = $('.changeModal').css('z-index') + 1
         $(this).remove()
       });
 
-$('.tableOverlay').dblclick(function() {
-  let index = $(this).prev('table').index()
+$('.tableOverlay').click(function() {
+  let index = $(this).parent().parent().index()
   console.log(index)
   $(this).animate({opacity: '0'}, 500)
   iFrameDom.find('.emailContent').children('table').eq(index).remove()
-  let emailContentHeight = iFrameDom.find('.emailContent').css('height')
-  $('iframe').css({'height': emailContentHeight})
-  $('.chosenContent table').eq(index).remove()
+  $('.removeModules').eq(index).remove()
 
 });
 
     });
     })
 
-
-
-
-
-    let emptyContentHeight = iFrameDom.find('.emptyContent').css('height')
-    $('iframe').css('height', emptyContentHeight)
 
 
 
