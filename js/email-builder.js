@@ -11,6 +11,13 @@ setTimeout(function() {
     padding: '0px'
   })
 
+$('.componentModules > div > h3').each(function(){
+if ($(this).text().indexOf('Heha') >= 0) {
+  console.log($(this).text())
+   $(this).text($(this).text().replace('Heha', 'HEHA'))
+   console.log($(this).text())
+}
+})
 
   $('.copyCode').css({
     'pointer-events': "none",
@@ -446,7 +453,7 @@ setTimeout(function() {
     }
   });
   $('.closeEditor').click(function() {
-    if ($('.toolbar > *').css('opacity') = '0') {
+    if ($('.options').not('.toolbar').css('right') === '0px') {
       $('.toolbar > *').animate({
         'opacity': '1'
       }, 1000)
@@ -495,7 +502,7 @@ setTimeout(function() {
     $('.chosenContent a').removeAttr('href')
     $('.removeModules > table').click(function() {
 
-      const overlay = '<div class="tableOverlay"><i class="fas fa-plus"></i></div>'
+      const overlay = '<div class="tableOverlay"><i class="fas fa-trash-alt"></i></div>'
       $(this).append(overlay);
       const bottomWidth = $(this).css('width');
       const bottomHeight = $(this).css('height');
@@ -511,7 +518,7 @@ setTimeout(function() {
         background: '#FFFFFF',
         opacity: '0.75'
       });
-      $('.tableOverlay > .fa-plus').css({
+      $('.tableOverlay > .fa-trash-alt').css({
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -546,9 +553,13 @@ setTimeout(function() {
           $('.deleteModal').animate({
             'right': '-400px'
           }, 1000)
-          $('.deleteModulesBtn').animate({
+          $('.deleteModulesBtn').css({
             'opacity': '1'
-          }, 1000)
+          })
+
+          $('.toolbar .tableOverlay').remove()
+
+
 
         }
 
