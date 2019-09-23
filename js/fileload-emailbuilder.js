@@ -1,4 +1,6 @@
-for (let x = 0; x < Object.keys(files).length; x++) {
+function loadScript() {
+
+	for (let x = 0; x < Object.keys(files).length; x++) {
 
 	for (let i = 0; i < Object.values(files)[x].length; i++) {
 
@@ -11,11 +13,19 @@ for (let x = 0; x < Object.keys(files).length; x++) {
 			let moduleNameCapitalise = moduleNameAddSpacing.replace(/^./, function(str){ return str.toUpperCase(); })
 			let moduleDisplayName = moduleNameCapitalise
 
+			console.log(moduleName)
+
 					$.get(path + moduleType + '/' + moduleName, function (data) {
 					$('.' + moduleType).append('<div><h3>' + moduleNameCapitalise + '</h3> <div>' + data + '</div></div>');
 				});
 
+			let layoutModulesChildren = $('.layoutModules').children('div').eq(i)
+			console.log(layoutModulesChildren)
 			});
 		}
 
 }
+
+}
+
+loadScript()
