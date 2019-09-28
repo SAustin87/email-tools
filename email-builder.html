@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/email-builder.css" />
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="js/md5.js"></script>
 	<script src="js/files.js"></script>
 	<script src="js/fileload-emailbuilder.js"></script>
 	<script src="js/email-builder.js"></script>
@@ -24,6 +25,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+										<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+									  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+									  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+
+									  <!-- Add Firebase products that you want to use -->
+										<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+
+										<script src="js/init-firebase.js"></script>
 	<script type="text/javascript">
 		(function() {
 			const css = document.createElement('link');
@@ -35,7 +45,27 @@
 	</script>
 </head>
 	<body>
+		<div class="helpBG"></div>
+<div class="helpBtn helpBtnSmall"><i class="fas fa-question"></i>
+<div class="helpContent helpContentInactive"><h1 class="helpTitle">How-to guide <i class="fas fa-times"></i></h1>
+	<h2 style="margin-top:25px">Adding modules</h2>
+<p>Adding modules to your email build is easy. All you need to do is select your modules from the list on the right.</p>
 
+<h2>Editing modules</h2>
+<p>All elements within modules are editable. Clicking on text, images or buttons will open an editing suite, giving you options to change text, style, image links, hyperlink urls and more. You can also remove this element entirely.</p>
+
+<h2>Deleting modules</h2>
+<p>To delete modules, you must click the “remove modules” button. This opens a menu, listing current modules. Double clicking on those modules you wish to remove will delete them.</p>
+
+<h2>Share Link</h2>
+<p>The share link button copies a shareable link to your clipboard.</p>
+
+<h2>Copy code</h2>
+<p>This copies your full email build to your clipboard, including head tags, styles, and all body content.</p>
+
+<h2>Download file</h2>
+<p>Downloads a named HTML file of the full email.</p>
+<div class="feedback">Give Feedback</div><br><br></div></div>
 <div class="deleteModal options"><div class="closeEditor">Return to modules <i class="fas fa-sign-out-alt"></i></div><div class="chosenContent"></div></div>
 
 <div class="changeModal options">
@@ -109,10 +139,19 @@ Height:</div><div><input type="text" class="imageHeight imageSize"></div></div>
 </div>
 <br><br>
 </div>
-
+<div class="fileName"><div class="triangle"></div><input type="text" class="fileNameText"><i class="downloadBtn fas fa-download"></i></div>
 <div class="copyBtn">
-<div class="copyCode">Copy code <i class="far fa-copy"></i></div>
-<div class="codeCopied">Code copied <i class="far fa-check-circle"></i></div></div>
+
+	<div class="downloadFile exportBtns">Download <i class="fas fa-download"></i></div>
+	<div class="fileDownloaded">Downloaded <i class="far fa-check-circle"></i></div>
+
+<div class="copyCode exportBtns">Copy code <i class="far fa-copy"></i></div>
+<div class="codeCopied">Code copied <i class="far fa-check-circle"></i></div>
+
+<div class="copyShare exportBtns">Copy share link <i class="fas fa-share"></i></i></div>
+<div class="shareCopied">Share link copied <i class="far fa-check-circle"></i></div>
+
+</div>
 <div class="toolbar options">
   <h1>Modules</h1>
 	<h2 id="layoutModules">Layout modules</h2>
@@ -122,7 +161,7 @@ Height:</div><div><input type="text" class="imageHeight imageSize"></div></div>
 </div>
 
 <div class="contentArea">
-	<div class="pageTitle">Holiday <span>Extras</span> Email Builder</div>
+	<div class="pageTitle">Holiday <span>Extras</span> Email Builder<br><br><span class="builtBy"><span>Built by</span> Simon Austin</span><span class="bestUsed"><span>Best used in </span>Google Chrome</span></div>
 
 <div class="emailBody">
 	<div class="resizeControls"><div class="resizeDevices"><i class="fas fa-desktop"></i><i class="fas fa-mobile-alt"></i></div><div class="resizeWidth"><i class="fas fa-arrow-left"></i><span class="resizePixels count">600</span>px<i class="fas fa-arrow-right"></i></div><div class="deleteModulesBtn">Remove modules</div>
@@ -970,5 +1009,10 @@ a.ctabtn {
 									</body>
 
 									</html></xmp>
+
+									<script defer src="js/createShareLink.js"></script>
+									<script defer src="js/getFromShareLink.js"></script>
+
+
 
   </body></html>

@@ -3,8 +3,6 @@ $(document).ready(function() {
 
   $.get( "/contentSections/layoutModules/brandTagHeader.html", function( data ) {
   $( ".emailContent" ).html( data );
-  console.log( "Load was performed." );
-  console.log(data)
 });
 
 setTimeout(function() {
@@ -150,7 +148,6 @@ $(".headlineHeightMinus").click(function() {
   $('h1').css("line-height", newSize + 'px');
   iFrameDom.find('h1').css("line-height", newSize + 'px');
   $('.currentHeadlineHeight').text(':' + newSizeEM )
-	console.log({currentSize, currentFontSize, newSize, newSizeEM})
 });
 
 $(".headlineHeightPlus").click(function() {
@@ -161,7 +158,6 @@ $(".headlineHeightPlus").click(function() {
   $('h1').css("line-height", newSize + 'px');
   iFrameDom.find('h1').css("line-height", newSize + 'px');
   $('.currentHeadlineHeight').text(':' + newSizeEM )
-	console.log({currentSize, currentFontSize, newSize, newSizeEM})
 });
 
 /* Change subtitle font size */

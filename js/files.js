@@ -31,5 +31,3 @@ let files =
 			'threeColumn.html'
 		]
 }
-
-console.log(files)

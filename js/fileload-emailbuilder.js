@@ -1,10 +1,14 @@
 function loadScript() {
 
-	for (let x = 0; x < Object.keys(files).length; x++) {
+	var filesHtml = Object.assign({}, files)
+
+  for (let x = 0; x < Object.keys(files).length; x++) {
 
 	for (let i = 0; i < Object.values(files)[x].length; i++) {
 
 		$(function () {
+
+			console.log(filesHtml)
 			let moduleType = Object.keys(files)[x]
 			let moduleName = Object.values(files)[x][i]
 			let moduleNameReplaceExt = moduleName.replace('.html', '')
@@ -13,14 +17,14 @@ function loadScript() {
 			let moduleNameCapitalise = moduleNameAddSpacing.replace(/^./, function(str){ return str.toUpperCase(); })
 			let moduleDisplayName = moduleNameCapitalise
 
-			console.log(moduleName)
-
 					$.get(path + moduleType + '/' + moduleName, function (data) {
+
+						//Object.values(filesHtml)[x][i] = '<div><h3>' + moduleNameCapitalise + '</h3> <div>' + data + '</div></div>';
 					$('.' + moduleType).append('<div><h3>' + moduleNameCapitalise + '</h3> <div>' + data + '</div></div>');
+					//console.log(filesHtml)
 				});
 
 			let layoutModulesChildren = $('.layoutModules').children('div').eq(i)
-			console.log(layoutModulesChildren)
 			});
 		}
 
