@@ -600,7 +600,9 @@ z-index: 10000
   transition: all .5s ease-in-out;
   transition-delay: .2s;
   overflow:scroll;
-  margin-bottom:50px
+  margin-bottom:50px;
+  direction: rtl;
+  padding:0 20px
 }
 
 .helpContentInactive {
@@ -680,7 +682,9 @@ input.fileNameText {
   font-weight: normal;
   margin: 10px 0 30px 0;
   padding:0 0 0 10px;
-  border-left:1px solid #FDDC06
+  border-left:1px solid #FDDC06;
+  direction:ltr;
+
 }
 
 .helpContent > h2 {
@@ -688,19 +692,22 @@ input.fileNameText {
   font-weight: normal;
   text-align: left;
   font-size: 25px;
-  margin:0
+  margin:0;
+  direction:ltr;
+
 }
 
 .helpContent > h1 > .fa-times {
   font-size:30px;
   float:right;
-  margin-top:5px
+  margin-top:5px;
 }
 
 .helpContent > h1 {
   font-size: 30px;
     text-align: left;
     font-weight: normal;
+    direction: ltr;
 }
 
 .helpBG {
@@ -712,4 +719,72 @@ input.fileNameText {
   left:0;
   z-index: 1999;
   display:none
+}
+
+.removeElement {
+    border: 2px solid #542E91;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 40px;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #542E91;
+}
+
+.tableOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  opacity: 0.75;
+  z-index: 3000;
+}
+
+.tableOverlay2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  opacity: 0.75;
+  z-index: 3000;
+}
+
+.copyModule {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: #FFFFFF;
+  opacity: 0.75;
+  z-index: 3000;
+}
+
+
+.tableOverlay  .fa-plus {
+ position: absolute;
+ top: 50%;
+ left: 25%;
+ transform: translate(-50%,-50%);
+ font-size: 50px;
+ color: #000000;
+}
+
+.tableOverlay  .fa-copy {
+ position: absolute;
+ top: 50%;
+ left: 75%;
+ transform: translate(-50%,-50%);
+ font-size: 50px;
+ color: #000000;
+}
+
+.left {
+  width:50%;
+  height:100%;
+  border-right:1px dashed
 }

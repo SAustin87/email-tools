@@ -82,7 +82,9 @@ function mainScript() {
       $("textarea, .imageSize").val('')
       $('.fontSizeOutput').text('')
 
-
+$('.removeElement').click(function(){
+  iFrameDom.find(thisElement).remove()
+})
       if (iFrameDom.find(thisElement).hasClass('IMG')) {
        $('.link').show()
        $('.textStyle, .ctaStyle').hide()
@@ -323,78 +325,111 @@ function mainScript() {
   const copyBtnHeight = $('.copyBtn').outerHeight();
 
   //When clicking on a module
-  $(".module").parent().click(function() {
-   iFrameDom.find('.emptyContent, .emptyContentStyle').hide()
-   $('.hiddenContent .emptyContentStyle').remove()
-   $('.resizeControls').show()
-   $('.exportBtns').css({
-    opacity: '1',
-    "pointer-events": 'auto'
-   })
+  $(".module").parent().click(function(e) {
 
-   //Remove transparent overlay
-   $('.tableOverlay').remove();
+    var pWidth = $(this).innerWidth();
+   var pOffset = $(this).offset();
+   var x = e.pageX - pOffset.left;
 
-   //Copies module and inserts in to iFrame
-   $(this).children('table').clone().appendTo(iFrameDom.find('.emailContent'));
 
-   iFrameDom.find('.emailContent .module').css("background-color", "#FFFFFF")
-   iFrameDom.find('.emailContent > .module').removeClass('module')
+    if(pWidth/2 > x)
+{iFrameDom.find('.emptyContent, .emptyContentStyle').hide()
+$('.hiddenContent .emptyContentStyle').remove()
+$('.resizeControls').show()
+$('.exportBtns').css({
+ opacity: '1',
+ "pointer-events": 'auto'
+})
+
+//Remove transparent overlay
+$('.tableOverlay, .copyModule').remove();
+
+//Copies module and inserts in to iFrame
+$(this).children('table').clone().appendTo(iFrameDom.find('.emailContent'));
+
+iFrameDom.find('.emailContent .module').css("background-color", "#FFFFFF")
+iFrameDom.find('.emailContent > .module').removeClass('module')}
+    else
+        {
+        $('.tableOverlay, .copyModule').remove();
+        let clone = $(this).children('table').clone()
+        let tempDiv = $('<div class="tempDiv"></div>')
+        $('body').append(tempDiv)
+        $(tempDiv).html(clone)
+        $(tempDiv).children('table').removeClass('module')
+        let moduleToCopy  = $('.tempDiv').html()
+        console.log($('.tempDiv').html())
+         let $temp = $("<textarea>");
+
+         $("body").append($temp);
+         $temp.val(moduleToCopy).select();
+         document.execCommand("copy");
+         $temp.remove()
+         $(tempDiv).remove()
+
+       }
 editorActions()
-  });
+ });
 
-  $(".toolbar > div > div > div").children().mouseenter(function() {
-   const overlay = '<div class="tableOverlay"><i class="fas fa-plus"></i></div>'
-   $(this).append(overlay);
-   const bottomWidth = $(this).css('width');
-   const bottomHeight = $(this).css('height');
-   const rowPos = $(this).position();
-   bottomTop = rowPos.top;
-   bottomLeft = rowPos.left;
-   $('.tableOverlay').css({
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%',
-    background: '#FFFFFF',
-    opacity: '0.75'
-   });
-   $('.tableOverlay > .fa-plus').css({
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-    'font-size': '30px',
-    color: '#000000',
-   });
-   $('.tableOverlay').mouseleave(function() {
-    $(this).remove()
-   });
-  })
-  /* Resize to desktop */
-  $('.fa-desktop').click(function() {
-   if ($('.emailBody').css('width') === '320px') {
-    $('.emailBody').animate({
-     "width": "600px"
-    }, 1000)
-    setTimeout(function() {
-     $('.deleteModulesBtn').show()
-    }, 1000)
-    $('.count').text('600')
-    $('.count').each(function() {
-     $(this).prop('Counter', 320).animate({
-      Counter: $(this).text()
-     }, {
-      duration: 1000,
-      easing: 'swing',
-      step: function(now) {
-       $(this).text(Math.ceil(now));
-      }
-     });
-    });
-   }
+ $(".toolbar > div > div > div").children().mouseenter(function() {
+  const overlay = '<div class="tableOverlay"><div class="left"><i class="fas fa-plus"></i></div><div class="right"><i class="far fa-copy"></i></div></div>'
+  if(!$(this).find('.tableOverlay').length) { $(this).append(overlay);}
+  const bottomWidth = $(this).css('width');
+  const bottomHeight = $(this).css('height');
+  const rowPos = $(this).position();
+  bottomTop = rowPos.top;
+  bottomLeft = rowPos.left;
+
+  $('.tableOverlay').mouseleave(function() {
+   $(this).remove()
   });
+ })
+ /* Resize to desktop */
+ $('.fa-desktop').click(function() {
+  if ($('.emailBody').css('width') === '320px') {
+   $('.emailBody').animate({
+    "width": "600px"
+   }, 1000)
+   setTimeout(function() {
+    $('.deleteModulesBtn').show()
+   }, 1000)
+   $('.count').text('600')
+   $('.count').each(function() {
+    $(this).prop('Counter', 320).animate({
+     Counter: $(this).text()
+    }, {
+     duration: 1000,
+     easing: 'swing',
+     step: function(now) {
+      $(this).text(Math.ceil(now));
+     }
+    });
+   });
+  }
+ });
+ /* Resize to desktop */
+ $('.fa-desktop').click(function() {
+  if ($('.emailBody').css('width') === '320px') {
+   $('.emailBody').animate({
+    "width": "600px"
+   }, 1000)
+   setTimeout(function() {
+    $('.deleteModulesBtn').show()
+   }, 1000)
+   $('.count').text('600')
+   $('.count').each(function() {
+    $(this).prop('Counter', 320).animate({
+     Counter: $(this).text()
+    }, {
+     duration: 1000,
+     easing: 'swing',
+     step: function(now) {
+      $(this).text(Math.ceil(now));
+     }
+    });
+   });
+  }
+ });
   /* Resize to mobile */
   $('.fa-mobile-alt').click(function() {
    if ($('.emailBody').css('width') === '600px') {
@@ -466,35 +501,18 @@ editorActions()
    $('.chosenContent a').removeAttr('href')
    $('.removeModules > table').click(function() {
 
-    const overlay = '<div class="tableOverlay"><i class="fas fa-trash-alt"></i></div>'
+    const overlay = '<div class="tableOverlay2"><i class="fas fa-trash-alt"></i></div>'
     $(this).append(overlay);
     const bottomWidth = $(this).css('width');
     const bottomHeight = $(this).css('height');
     const rowPos = $(this).position();
     bottomTop = rowPos.top;
     bottomLeft = rowPos.left;
-    $('.tableOverlay').css({
-     position: 'absolute',
-     top: '0',
-     left: '0',
-     width: '100%',
-     height: '100%',
-     background: '#FFFFFF',
-     opacity: '0.75'
-    });
-    $('.tableOverlay > .fa-trash-alt').css({
-     position: 'absolute',
-     top: '50%',
-     left: '50%',
-     transform: 'translate(-50%,-50%)',
-     'font-size': '30px',
-     color: '#000000',
-    });
-    $('.tableOverlay').mouseleave(function() {
+    $('.tableOverlay2').mouseleave(function() {
      $(this).remove()
     });
 
-    $('.tableOverlay').click(function() {
+    $('.tableOverlay2').click(function() {
      let index = $(this).parent().parent().index()
      $(this).animate({
       opacity: '0'
@@ -544,21 +562,27 @@ let contentToCopy = openingCode + bodyCode + closingCode
 console.log(contentToCopy)
 
 let downloadName = $('.fileNameText').val()
+
 var a = document.body.appendChild(
        document.createElement("a")
    );
-
+   var blob = new Blob([contentToCopy], {type: "text/html"});
+   var url = URL.createObjectURL(blob);
+a.href = url
 a.download = downloadName + ".html";
-a.href = "data:text/html," + contentToCopy;
 a.click();
 $('.fileName').removeClass('scale')
 $('.fileDownloaded').show().delay(1000).fadeOut(2000).css("display", "inline-block");
 
 })
-
+$('.fileNameText').keypress(function(e){
+        if(e.which == 13){//Enter key pressed
+            $('.downloadBtn').click();//Trigger search button click event
+        }
+    })
 $('.fa-question').click(function(){
 $('.helpBtn').removeClass('helpBtnSmall').addClass('helpBtnFull')
-$('.fa-question').hide()
+$('.fa-question').fadeOut()
 $('.helpContent').removeClass('helpContentInactive').addClass('helpContentActive')
 $('.helpBG').fadeIn(300)
 
@@ -572,8 +596,8 @@ setTimeout(function(){
   $('.helpBtn').removeClass('helpBtnFull').addClass('helpBtnSmall')
   $('.helpBG').fadeOut(300)
 
-  setTimeout(function(){$('.fa-question').show()},400)
-},500)
+  setTimeout(function(){$('.fa-question').fadeIn()},400)
+},400)
 })
 
  }, 2000);
