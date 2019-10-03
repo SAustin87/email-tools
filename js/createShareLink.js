@@ -16,7 +16,7 @@ $(".copyShare").click(function() {
 
   event.preventDefault();
 
-  let contentToCopy = `${window.location}?share=${userCreatedHash}&key=${postID}`;
+  let contentToCopy = window.location.origin + window.location.pathname + '?share=' + userCreatedHash + '&key=' + postID
   let $temp = $("<textarea>");
 
   $("body").append($temp);
