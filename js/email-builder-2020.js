@@ -39,6 +39,8 @@ async function fileLoadScript() {
       	 }
        })
       }
+
+
 async function documentLoad() {
         return new Promise((resolve, reject) => {
           try {
@@ -66,7 +68,7 @@ async function documentLoad() {
         const theTop = parseInt($('.pageTitle').css("height").replace('px', ''))
         $('#iFrame').contents().find('.emailContent').css({
          top: theTop,
-         width: '100%'
+         'max-width': '600'
         });
 
 
@@ -91,6 +93,8 @@ async function documentLoad() {
 
 
         }
+
+
 async function disableCopyBtn() {
 return new Promise((resolve, reject) => {
  try {
@@ -105,9 +109,12 @@ return new Promise((resolve, reject) => {
      }
    })
  }
+
+
 async function getFromShareLink() {
    return new Promise((resolve, reject) => {
      try {
+       setTimeout(function() {
          if (window.location.href.indexOf("share") > -1) {
 
      let sessionVal = new URL(window.location).searchParams.get("share")
@@ -120,17 +127,25 @@ async function getFromShareLink() {
 
        var objectValue = Object.values(sessionContent)
 
-       $('#iFrame').contents().find('body').html(objectValue)
+       $('#iFrame').contents().find('body').find('.emailContent').html(objectValue)
 
+       $('#iFrame').contents().find('body').find('.emptyContent').hide()
+
+editorActions()
      });
 
+
+
    }
+     },1000);
    resolve();
        } catch (e) {
          reject(e);
        }
      })
    }
+
+
 function mouseActions() {
 $(".module").parent().click(function(e) {
 
@@ -195,9 +210,6 @@ if ($('.emailBody').css('width') === '320px') {
  $('.emailBody').animate({
   "width": "600px"
  }, 1000)
- setTimeout(function() {
-  $('.deleteModulesBtn').show()
- }, 1000)
  $('.count').text('600')
  $('.count').each(function() {
   $(this).prop('Counter', 320).animate({
@@ -217,9 +229,6 @@ if ($('.emailBody').css('width') === '320px') {
  $('.emailBody').animate({
   "width": "600px"
  }, 1000)
- setTimeout(function() {
-  $('.deleteModulesBtn').show()
- }, 1000)
  $('.count').text('600')
  $('.count').each(function() {
   $(this).prop('Counter', 320).animate({
@@ -236,7 +245,6 @@ if ($('.emailBody').css('width') === '320px') {
 });
 $('.fa-mobile-alt').click(function() {
  if ($('.emailBody').css('width') === '600px') {
-  $('.deleteModulesBtn').hide()
   $('.emailBody').animate({
    "width": "320px"
   }, 1000)
@@ -334,23 +342,7 @@ $('.fileNameText').keypress(function(e){
           $('.downloadBtn').click();//Trigger search button click event
       }
   })
-$('.fa-question').click(function(){
-$('.helpBtn').removeClass('helpBtnSmall').addClass('helpBtnFull')
-$('.fa-question').fadeOut()
-$('.helpContent').removeClass('helpContentInactive').addClass('helpContentActive')
-$('.helpBG').fadeIn(300)
 
-})
-$('.fa-times').click(function(){
-$('.helpContent').removeClass('helpContentActive').addClass('helpContentInactive')
-
-setTimeout(function(){
-$('.helpBtn').removeClass('helpBtnFull').addClass('helpBtnSmall')
-$('.helpBG').fadeOut(300)
-
-setTimeout(function(){$('.fa-question').fadeIn()},400)
-},400)
-})
 $(".copyCode").click(function() {
  $('#iFrame').contents().find('.emailContent .mobileText').text($('.emailContent .desktopMsg').text());
  $('#iFrame').contents().find('.emptyContent, .emptyContentStyle').remove()
@@ -372,7 +364,7 @@ $(".copyShare").click(function() {
 
   let firebaseRef = firebase.database().ref()
 
-  let userCreatedDynamicHtml = $('#iFrame').contents().find('body').html()
+  let userCreatedDynamicHtml = $('#iFrame').contents().find('body').find('.emailContent').html()
 
   let userCreatedHash = hex_md5(userCreatedDynamicHtml)
 
@@ -396,6 +388,8 @@ $(".copyShare").click(function() {
 
 })
 }
+
+
 function editorActions() {
   if (window.location.href.indexOf("share") > -1) {
       $('.resizeControls').show()
