@@ -14,15 +14,18 @@
 	<link rel="shortcut icon" href="https://dmy0b9oeprz0f.cloudfront.net/holidayextras.co.uk/brand-guidelines/logo-tags/png/door-tag.png" />
 	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css">
 	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/cupertino/jquery-ui.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/email-builder.css" />
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="js/md5.js"></script>
 	<script src="js/files.js"></script>
-	<script src="js/email-builder2.js"></script>
+	<script src="js/email-builder-2020.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
 										<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
@@ -46,7 +49,8 @@
 	<body>
 		<div class="helpBG"></div>
 <div class="helpBtn helpBtnSmall"><i class="fas fa-question"></i>
-<div class="helpContent helpContentInactive"><h1 class="helpTitle">How-to guide <i class="fas fa-times"></i></h1>
+<div class="helpContent helpContentInactive">
+	<h1 class="helpTitle">How-to guide <i class="fas fa-times"></i></h1>
 	<h2 style="margin-top:25px">Adding modules</h2>
 <p>When hovering over one of the modules to the right, click the + icon to add to the your email build.</p>
 
@@ -68,9 +72,13 @@
 
 <h2>Download file</h2>
 <p>Downloads a named HTML file of the full email.</p>
-<div class="feedback">Give Feedback</div><br><br></div></div>
-<div class="deleteModal options"><div class="closeEditor">Return to modules <i class="fas fa-sign-out-alt"></i></div><div class="chosenContent"></div></div>
+<div class="feedback">Give Feedback</div>
+</div>
+</div>
+<div id="removeModules" class="modal deleteModal options"><div class="chosenContent"></div></div>
 
+
+<div id="editContent" class="modal">
 <div class="changeModal options">
 	<div class="closeEditor">Return to modules <i class="fas fa-sign-out-alt"></i></div>
 <div class="styleBlock pad15top textStyle">
@@ -143,9 +151,17 @@ Height:</div><div><input type="text" class="imageHeight imageSize"></div></div>
 <div class="removeElement">Remove element</div>
 <br><br>
 </div>
-<div class="fileName"><div class="triangle"></div><input type="text" placeholder="Enter file name" class="fileNameText"><i class="downloadBtn fas fa-download"></i></div>
-<div class="copyBtn">
+</div>
 
+
+
+<div class="fileName"><div class="triangle"></div><input type="text" placeholder="Enter file name" class="fileNameText"><i class="downloadBtn fas fa-download"></i></div>
+
+<div class="btns">
+
+	<div class="addModulesOff addModuleBtns"><a href="#addModules" class="openModal" rel="modal:open">Add modules</a></div>
+	<div class="removeModulesOn"><a href="#removeModules" class="openModal deleteModulesBtn" rel="modal:open">Remove modules</a></div>
+<hr>
 	<div class="downloadFile exportBtns">Download <i class="fas fa-download"></i></div>
 	<div class="fileDownloaded">Downloaded <i class="far fa-check-circle"></i></div>
 
@@ -156,6 +172,9 @@ Height:</div><div><input type="text" class="imageHeight imageSize"></div></div>
 <div class="shareCopied">Share link copied <i class="far fa-check-circle"></i></div>
 
 </div>
+
+
+<div id="addModules" class="modal">
 <div class="toolbar options">
   <h1>Modules</h1>
 	<h2 id="layoutModules">Layout modules</h2>
@@ -163,12 +182,13 @@ Height:</div><div><input type="text" class="imageHeight imageSize"></div></div>
 	<h2 id="componentModules">Component modules</h2>
 	<div class="componentModules"></div>
 </div>
+</div>
 
 <div class="contentArea">
-	<div class="pageTitle">Holiday <span>Extras</span> Email Builder<br><br><span class="builtBy"><span>Built by</span> Simon Austin</span><span class="bestUsed"><span>Best used in </span>Google Chrome</span></div>
+	<div class="pageTitle">Holiday <span>Extras</span> Email Builder<br><span class="builtBy"><span>Built by</span> Simon Austin</span><br><span class="bestUsed"><span>Best used in </span>Google Chrome</span></div>
 
 <div class="emailBody">
-	<div class="resizeControls"><div class="resizeDevices"><i class="fas fa-desktop"></i><i class="fas fa-mobile-alt"></i></div><div class="resizeWidth"><i class="fas fa-arrow-left"></i><span class="resizePixels count">600</span>px<i class="fas fa-arrow-right"></i></div><div class="deleteModulesBtn">Remove modules</div>
+	<div class="resizeControls"><div class="resizeDevices"><i class="fas fa-desktop"></i><i class="fas fa-mobile-alt"></i></div><div class="resizeWidth"><i class="fas fa-arrow-left"></i><span class="resizePixels count">600</span>px<i class="fas fa-arrow-right"></i></div>
 </div>
 
 <div class="iFrameResize" id="resize">
