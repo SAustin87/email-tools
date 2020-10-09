@@ -275,8 +275,8 @@ body {
 }
 
 .styleTitle {
-  width: 160px;
-  padding: 20px 0 20px 0
+  width: 100%;
+  padding: 20px 0 20px 0;
 }
 .copyCode, .copyShare, .downloadFile, .codeCopied, .shareCopied, .fileDownloaded, .addModulesOn, .addModulesOff, .removeModulesOn, .removeModulesOff {
   display: inline-block;
@@ -570,6 +570,17 @@ input.ctaSize {
   transition: all 1s;
 }
 
+.fileNameMin {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background-color: #FDDC06;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #542E91;
+}
+
 .fileName.scale {
   transform: translate(0, 0) scale(1);
   opacity:1
@@ -637,10 +648,11 @@ input.fileNameText {
 
 }
 
-#helpContent > h1 > .fa-times {
-  font-size:30px;
-  float:right;
-  margin-top:5px;
+.fa-times {
+    font-size: 15px;
+    margin-top: 3px;
+    margin-left: 4.5px;
+    color: #542E91;
 }
 
 #helpContent > h1 {

@@ -314,6 +314,13 @@ $('.fileName').fadeIn(500)
 $('.fileName').addClass('scale')
 
 })
+
+$('.fileNameMin').click(function(){
+$('.fileName').fadeOut(500)
+$('.fileName').removeClass('scale')
+
+})
+
 $('.downloadBtn').click(function() {
 
 $('#iFrame').contents().find('.emailContent .mobileText').text($('.emailContent .desktopMsg').text());
