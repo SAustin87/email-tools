@@ -1,18 +1,18 @@
 $(".copyShare").click(function() {
 
-  var url = "https://email-builder-15348.firebaseio.com/"
+  let url = "https://email-builder-15348.firebaseio.com/"
 
-  var firebaseRef = firebase.database().ref()
+  let firebaseRef = firebase.database().ref()
 
-  var userCreatedDynamicHtml = $('#iFrame').contents().find('body').html()
+  let userCreatedDynamicHtml = $('#iFrame').contents().find('body').html()
 
-  var userCreatedHash = hex_md5(userCreatedDynamicHtml)
+  let userCreatedHash = hex_md5(userCreatedDynamicHtml)
 
-  var refPush = firebaseRef.push({
+  let refPush = firebaseRef.push({
     [userCreatedHash]: userCreatedDynamicHtml
   });
 
-  var postID = refPush.key;
+  let postID = refPush.key;
 
   event.preventDefault();
 

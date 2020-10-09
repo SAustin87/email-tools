@@ -45,11 +45,13 @@ function mainScript() {
 
 
   function editorActions() {
-    $('.resizeControls').show()
-    $('.exportBtns').css({
-     opacity: '1',
-     "pointer-events": 'auto'
-    })     //When clicking on element
+    if (window.location.href.indexOf("share") > -1) {
+      $('.resizeControls').show()
+      $('.exportBtns').css({
+        opacity: '1',
+        "pointer-events": 'auto'
+      })
+    }    //When clicking on element
      iFrameDom.find('h1, h2, h3, h4, p, a, li, img').unbind('click').bind('click', function(e) {
       e.stopPropagation();
       e.preventDefault();

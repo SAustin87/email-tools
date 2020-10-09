@@ -1,4 +1,4 @@
-function loadScript() {
+function fileLoadScript() {
 
 	var filesHtml = Object.assign({}, files)
 
@@ -32,4 +32,4 @@ function loadScript() {
 
 }
 
-loadScript()
+fileLoadScript()

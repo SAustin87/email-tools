@@ -23,16 +23,35 @@
 }
 
 .toolbar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  width:auto;
 	background-color: #542E91;
   border-left: 1px solid #402270;
   text-align: left;
   padding: 30px;
-  overflow-y: scroll;
   z-index: 1
+}
+
+.modal {
+  padding:0;
+  width:300px;
+  max-width:300px;
+  right:0;
+  top:0;
+  left:auto;
+  position:fixed;
+  overflow-y:scroll;
+  height:100%;
+  border:none;
+  z-index: 6000;
+  border-radius:0
+}
+
+#addModules {
+  background-color:#542E91
+}
+.close-modal {
+  top:10px!important;
+  right:10px!important;
 }
 
 .textbox {
@@ -114,27 +133,65 @@ border-radius: 4px;
 
 .contentArea {
   position: absolute;
-  min-height: calc(100% - 80px);
+  height: calc(100% - 20px);
   background-color: #301a55;
   overflow: hidden;
+  width:100%
 }
 
-.copyBtn {
+.btns {
   position: fixed;
   z-index: 1;
-  height: 80px;
-  background-color: #301a55;
-  bottom: 0;
+  top:150px;
+  left:20px;
   color: #FFFFFF;
   font-size: 30px;
-  -webkit-box-shadow: 0px -8px 26px -2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px -8px 26px -2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px -8px 26px -2px rgba(0, 0, 0, 0.3);
+  cursor:pointer;
+  height:500px;
+  width:180px
+}
+
+hr {
+  margin: 20px 0;
+    border: 0;
+    border-top: none;
+    border-bottom: 1px solid #ffffff;
+    position: absolute;
+    top: 100px;
+    width: 100%;
 }
 
 #iFrame {
-  width: 100%;
+  width: calc(100% + 30px);
   height:100%!important
+}
+
+.openModal {
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color:#2d194f
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    background-color:#FFFFFF
+}
+
+.openModal:hover {
+  text-decoration:none;
+  color:inherit;
 }
 
 .iFrameResize {
@@ -193,26 +250,19 @@ body {
 }
 
 .pageTitle {
-  font-size: 40px;
+  font-size: 20px;
   color: #FFFFFF;
-  text-align: center;
-  padding: 40px 0 40px 0;
-  width:500px;
-  margin:0 auto
+  text-align: left;
+  position:absolute;
+  top:20px;
+  left:20px
 }
 
 .bestUsed, .builtBy {
-  font-size:16px;
+  font-size:14px;
   display:inline-block;
 }
 
-.bestUsed {
-  float:right
-}
-
-.builtBy {
-  float:left
-}
 .bestUsed > span, .builtBy > span {
   color:#FFFFFF!important
 }
@@ -225,107 +275,43 @@ body {
   width: 160px;
   padding: 20px 0 20px 0
 }
-
-.codeCopied, .copyCode, .copyShare, .shareCopied, .downloadFile, .fileDownloaded {
-  bottom: 20px
-}
-
-.settingsCopied, .copySettings {
-  bottom: 80px
-}
-
-.copyCode, .copySettings {
+.copyCode, .copyShare, .downloadFile, .codeCopied, .shareCopied, .fileDownloaded, .addModulesOn, .addModulesOff, .removeModulesOn, .removeModulesOff {
   display: inline-block;
   text-align: center;
   width: 180px;
   background-color: #FDDC06;
   color: #542E91;
   position: absolute;
-  right: 50%;
-  transform: translate(50%, 0%);
   z-index: 3;
   font-size: 18px;
   line-height: 40px;
   border-radius: 4px
 }
 
-.copyShare {
-  display: inline-block;
-  text-align: center;
-  width: 180px;
-  background-color: #FDDC06;
-  color: #542E91;
-  position: absolute;
-  right: 25%;
-  transform: translate(50%, 0%);
-  z-index: 3;
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 4px
+.addModulesOff, .addModulesOn {
+top:0px
 }
 
-.downloadFile {
-  display: inline-block;
-  text-align: center;
-  width: 180px;
-  background-color: #FDDC06;
-  color: #542E91;
-  position: absolute;
-  right: 75%;
-  transform: translate(50%, 0%);
-  z-index: 3;
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 4px
+.removeModulesOff, .removeModulesOn {
+top:50px
 }
 
-.codeCopied, .settingsCopied {
-  display: none;
-  text-align: center;
-  width: 180px;
+.copyCode, .codeCopied {
+top:150px
+}
+
+.copyShare, .shareCopied {
+top:200px
+}
+
+.downloadFile, .fileDownloaded {
+top:250px
+}
+
+.codeCopied, .shareCopied, .fileDownloaded, .addModulesOn {
+  display:none;
   background-color: #00A99D;
   color: #FFFFFF;
-  position: absolute;
-  right: 50%;
-  transform: translate(50%, 0%);
-  z-index: 4;
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 4px
-}
-
-.shareCopied {
-  display: none;
-  text-align: center;
-  width: 180px;
-  background-color: #00A99D;
-  color: #FFFFFF;
-  position: absolute;
-  right: 25%;
-  transform: translate(50%, 0%);
-  z-index: 4;
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 4px
-}
-
-.fileDownloaded {
-  display: none;
-  text-align: center;
-  width: 180px;
-  background-color: #00A99D;
-  color: #FFFFFF;
-  position: absolute;
-  right: 75%;
-  transform: translate(50%, 0%);
-  z-index: 4;
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 4px
-}
-
-.settings {
-  display: none
 }
 
 .emailBody {
@@ -333,7 +319,7 @@ body {
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 0%);
-  top: 150px;
+  top: 20px;
   bottom: 10px
 }
 
@@ -343,8 +329,8 @@ body {
 }
 
 .toolbar>div>div>div>table {
-  zoom: 0.5;
-  transform: scale(1);
+  zoom: 0.3;
+ transform: scale(1);
   margin: 0px auto;
 }
 
@@ -443,14 +429,14 @@ body {
   background-color:#301a55
 }
 
-.changeModal, .deleteModal {
-  position:fixed;
-  height:100%;
-  right:-400px;
-  z-index:2000;
+.changeModal {
+  width:auto;
   background-color:#FDDC06;
-  overflow:scroll;
   padding-bottom:30px
+}
+
+.deleteModal {
+  background-color:#FDDC06;
 }
 
 .closeEditor {
@@ -511,7 +497,7 @@ input.ctaSize {
 }
 
 .removeModules > table {
-  zoom: 0.5;
+  zoom: 0.3;
   transform: scale(1);
   margin:10px
 }
@@ -523,20 +509,6 @@ input.ctaSize {
   left: 50%;
   position: relative;
   transform: translate(-50%, 0);
-}
-
-.deleteModulesBtn {
-border:1px solid #FFFFFF;
-color:#FFFFFF;
-position:absolute;
-right:0;
-top:-5px;
-padding:5px;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
-margin-bottom:5px;
-z-index: 10000
 }
 
 .moduleContainer {
@@ -557,7 +529,7 @@ z-index: 10000
     color:#FFFFFF;
     border-radius: 50%;
     position: fixed;
-    z-index: 2000;
+    z-index: 5;
     padding:10px;
     transition: all .5s ease-in-out;
 }
@@ -576,19 +548,21 @@ z-index: 10000
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    right: 20px;
     -webkit-box-shadow: inset 0px 0px 0px 8px rgba(93,57,151,1);
     -moz-box-shadow: inset 0px 0px 0px 8px rgba(93,57,151,1);
     box-shadow: inset 0px 0px 0px 8px rgba(93,57,151,1);
+
 }
 
 .helpBtnFull {
   top:0;
-  left:0;
+  right:0;
   border-radius:0;
   width:300px;
   height:100%;
+  padding:0 0 0 10px;
   -webkit-box-shadow: inset 0px 0px 0px 8px rgba(93,57,151,0);
   -moz-box-shadow: inset 0px 0px 0px 8px rgba(93,57,151,0);
   box-shadow: inset 0px 0px 0px 8px rgba(93,57,151,0);
@@ -599,21 +573,20 @@ z-index: 10000
   height:100%;
   transition: all .5s ease-in-out;
   transition-delay: .2s;
-  overflow:scroll;
+  overflow-y:scroll;
   margin-bottom:50px;
-  direction: rtl;
-  padding:0 20px
+  padding:0 30px 0 20px
 }
 
 .helpContentInactive {
   opacity:0;
-  left: -300px;
+  right: -300px;
 
 }
 
 .helpContentActive {
   opacity:1;
-  left: 0px;
+  right: 0px;
 
 }
 .fileName {
@@ -672,7 +645,7 @@ input.fileNameText {
   font-size: 18px;
   line-height: 40px;
   border-radius: 4px;
-  margin-top:30px
+  margin: 30px 0
 }
 
 .helpContent > p {
@@ -717,7 +690,7 @@ input.fileNameText {
   position:absolute;
   top:0;
   left:0;
-  z-index: 1999;
+  z-index: 4;
   display:none
 }
 
@@ -772,6 +745,15 @@ input.fileNameText {
  transform: translate(-50%,-50%);
  font-size: 50px;
  color: #000000;
+}
+
+.fa-trash-alt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 50px;
+  color: #000000;
 }
 
 .tableOverlay  .fa-copy {
